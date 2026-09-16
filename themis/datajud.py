@@ -56,7 +56,7 @@ class Resultado:
 
 
 def _erro(mensagem: str) -> Resultado:
-    log.error(mensagem)
+    log.info(mensagem)
     return Resultado(False, erro=mensagem)
 
 
