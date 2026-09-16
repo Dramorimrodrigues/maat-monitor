@@ -1,0 +1,27 @@
+# ---- Dados pessoais do usuário: NUNCA versionar ----
+config.ini
+processos.txt
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backups/
+relatorios/
+buscar-oab-guia.html
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# ---- SO / editores ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

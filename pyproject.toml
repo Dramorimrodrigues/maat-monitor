@@ -1,0 +1,30 @@
+[project]
+name = "themis-monitor"
+version = "1.0.0"
+description = "Monitoramento gratuito e local de processos judiciais brasileiros via API pública DataJud/CNJ"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Márcio Luis Amorim" }]
+keywords = ["datajud", "cnj", "advocacia", "legaltech", "processos", "tribunais"]
+dependencies = ["requests>=2.31.0", "truststore>=0.9.0"]
+
+[project.urls]
+Homepage = "https://github.com/Dramorimrodrigues/themis-monitor"
+Issues = "https://github.com/Dramorimrodrigues/themis-monitor/issues"
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+extend-exclude = ["docs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+ignore = ["S101", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
