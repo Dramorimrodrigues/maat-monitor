@@ -1,0 +1,19 @@
+name: "Sugerir melhoria"
+description: Uma ideia para o THEMIS
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Que problema isso resolve?
+      description: Conte o cenario do dia a dia do escritorio.
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Como voce imagina a solucao?
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas que voce considerou

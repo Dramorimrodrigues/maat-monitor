@@ -1,0 +1,43 @@
+name: "Relatar um problema"
+description: Algo nao funcionou como esperado
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Obrigado por ajudar a melhorar o THEMIS. Nao cole numeros de processo reais de clientes."
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema e o que voce esperava.
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Como reproduzir
+      placeholder: "1. Cliquei em monitorar.bat  2. ...  3. Apareceu o erro ..."
+    validations:
+      required: true
+  - type: input
+    id: versao
+    attributes:
+      label: Versao do THEMIS
+      description: Saida de `python themis.py --versao`
+  - type: dropdown
+    id: so
+    attributes:
+      label: Sistema operacional
+      options: [Windows, macOS, Linux]
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Versao do Python
+      placeholder: "ex.: 3.12.4"
+  - type: textarea
+    id: log
+    attributes:
+      label: Mensagem de erro / log
+      render: text

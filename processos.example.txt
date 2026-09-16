@@ -1,0 +1,28 @@
+# THEMIS Monitor - Lista de processos para monitorar
+# ============================================
+# Copie este arquivo para processos.txt e cole UM numero CNJ por linha,
+# no formato:
+# NNNNNNN-DD.AAAA.J.TR.OOOO
+#
+# Linhas comecando com # sao ignoradas (comentarios).
+# Linhas em branco sao ignoradas.
+#
+# FORMATO COMPLETO (todos os campos apos o CNJ sao opcionais):
+#
+#   CNJ
+#   CNJ | Apelido do caso
+#   CNJ | Apelido do caso | Nome do Cliente
+#   CNJ | Apelido do caso | Nome do Cliente | Area Juridica
+#
+# Exemplos:
+#   0000001-05.2025.8.26.0100
+#   0000001-05.2025.8.26.0100 | Acao de indenizacao
+#   0000001-05.2025.8.26.0100 | Acao de indenizacao | Joao da Silva
+#   0000001-05.2025.8.26.0100 | Acao de indenizacao | Joao da Silva | Civel
+#
+# Areas sugeridas: Civel | Trabalhista | Federal | Previdenciario | Criminal | Familia
+#
+# ============================================
+# COLE SEUS PROCESSOS A PARTIR DAQUI (apague a linha de exemplo abaixo):
+
+0000001-05.2025.8.26.0100 | Exemplo de apelido | Cliente Exemplo | Civel
