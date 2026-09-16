@@ -288,3 +288,22 @@ def test_interrupcao_retorna_130(tmp_home, monkeypatch, capsys):
     monkeypatch.setattr(datajud, "testar_conexao", interromper)
     assert cli.main(["testar"]) == 130
     assert "Interrompido" in capsys.readouterr().out
+
+
+def test_monitorar_com_erro_parcial_retorna_0(sem_rede_nem_navegador, monkeypatch, capsys):
+    """Um processo não encontrado não é falha da execução: o resumo já o lista."""
+    caminhos = config.caminhos()
+    config.garantir_arquivos_iniciais(caminhos)
+    outro = "0000002-87.2025.8.26.0100"  # dígito válido, tribunal TJSP
+    caminhos.processos.write_text(f"{CNJ_FMT}\n{outro}\n", encoding="utf-8")
+
+    def consultar(cnj_limpo, tribunal, timeout=30):
+        if cnj_limpo == CNJ_LIMPO:
+            return datajud.Resultado(True, fonte=FONTE_MINIMA)
+        return datajud.Resultado(False, erro="Processo não encontrado no DataJud")
+
+    monkeypatch.setattr(datajud, "consultar", consultar)
+    assert cli.main(["monitorar", "--sem-navegador"]) == 0
+    saida = capsys.readouterr().out
+    assert "Atualizados com sucesso: 1" in saida
+    assert "Erros/não encontrados:   1" in saida

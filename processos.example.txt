@@ -23,6 +23,6 @@
 # Areas sugeridas: Civel | Trabalhista | Federal | Previdenciario | Criminal | Familia
 #
 # ============================================
-# COLE SEUS PROCESSOS A PARTIR DAQUI (apague a linha de exemplo abaixo):
+# COLE SEUS PROCESSOS A PARTIR DAQUI (a linha de exemplo abaixo esta comentada):
 
-0000001-05.2025.8.26.0100 | Exemplo de apelido | Cliente Exemplo | Civel
+# 0000001-05.2025.8.26.0100 | Exemplo de apelido | Cliente Exemplo | Civel

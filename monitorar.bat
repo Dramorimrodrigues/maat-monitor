@@ -28,8 +28,8 @@ if not exist "%PYTHON_EXE%" (
 "%PYTHON_EXE%" %PYTHON_ARGS% themis.py monitorar
 if errorlevel 1 (
     echo.
-    echo [ERRO] O monitoramento terminou com erro. Leia a mensagem acima.
-    echo        Se for a primeira vez, execute instalar.bat.
+    echo [AVISO] Nenhum processo pode ser consultado. Verifique sua internet
+    echo         e as mensagens acima. Se for a primeira vez, execute instalar.bat.
 )
 echo.
 pause

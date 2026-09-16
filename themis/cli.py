@@ -273,7 +273,9 @@ def cmd_monitorar(abrir_navegador: bool) -> int:
     _resumo_execucao(estatisticas, arq_html, arq_csv_proc, arq_csv_mov)
     _notificar(cfg, estatisticas, processos_com_novidade)
     _abrir(arq_html, abrir_navegador)
-    return 0 if estatisticas["erros"] == 0 else 1
+    # Erros pontuais (processo não encontrado etc.) já aparecem no resumo e no relatório;
+    # o código 1 fica reservado para quando NENHUM processo pôde ser consultado (ex.: sem internet).
+    return 0 if estatisticas["sucesso"] > 0 or estatisticas["erros"] == 0 else 1
 
 
 def cmd_painel(porta: int, abrir_navegador: bool) -> int:
