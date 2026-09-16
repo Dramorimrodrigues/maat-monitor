@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from themis import config
+from themis import cnj, config
 from themis.config import Processo
 
 # CNJs fictícios com dígito verificador válido (módulo 97)
@@ -43,12 +43,14 @@ def test_garantir_arquivos_iniciais_copia_exemplos(tmp_home):
     assert "Teste" in c.config.read_text(encoding="utf-8")
 
 
-def test_exemplo_de_processos_tem_cnj_valido(tmp_home):
+def test_exemplo_de_processos_vem_comentado_e_com_cnj_valido(tmp_home):
+    """A primeira execução não deve consultar nada: o exemplo fica comentado, mas o CNJ dele é válido."""
     c = config.caminhos()
     config.garantir_arquivos_iniciais(c)
     processos, avisos = config.carregar_processos(c)
-    assert avisos == []
-    assert processos == [Processo(CNJ_A, "Exemplo de apelido", "Cliente Exemplo", "Civel")]
+    assert avisos == [] and processos == []
+    exemplo = [ln for ln in c.processos.read_text(encoding="utf-8").splitlines() if ln.startswith("# 0000001")]
+    assert exemplo and cnj.validar(exemplo[0].lstrip("# ").split("|")[0])[0] == CNJ_A
 
 
 def test_carregar_config_sem_arquivo_devolve_fallbacks(tmp_home):
