@@ -15,7 +15,7 @@ from dataclasses import dataclass
 
 import requests
 
-from themis import __version__, cnj, constantes
+from maat import __version__, cnj, constantes
 
 try:  # certificados do sistema operacional (evita erros de SSL no Windows)
     import truststore
@@ -24,9 +24,9 @@ try:  # certificados do sistema operacional (evita erros de SSL no Windows)
 except ImportError:  # pragma: no cover - truststore é dependência opcional em tempo de execução
     pass
 
-log = logging.getLogger("themis.datajud")
+log = logging.getLogger("maat.datajud")
 
-USER_AGENT = f"THEMIS-Monitor/{__version__} (+https://github.com/Dramorimrodrigues/themis-monitor)"
+USER_AGENT = f"MAAT-Monitor/{__version__} (+https://github.com/Dramorimrodrigues/maat-monitor)"
 
 # CNJ público conhecido do TJ-SP, usado apenas para testar a conexão.
 CNJ_TESTE_CONEXAO = "00010540420108260100"

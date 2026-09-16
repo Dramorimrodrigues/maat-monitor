@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 import requests
 
-from themis import datajud
+from maat import datajud
 
 CNJ = "00010540420108260100"
 
@@ -68,7 +68,7 @@ def test_verify_nunca_false(post_fake):
     datajud.consultar(CNJ, "tjsp", timeout=5)
     for chamada in post_fake["chamadas"]:
         assert chamada.get("verify", True) is not False
-    assert "THEMIS-Monitor/" in datajud._sessao.headers["User-Agent"]
+    assert "MAAT-Monitor/" in datajud._sessao.headers["User-Agent"]
 
 
 def test_hits_vazio(post_fake):

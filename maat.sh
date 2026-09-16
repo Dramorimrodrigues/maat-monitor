@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # ============================================================
-#  THEMIS Monitor - lançador para macOS / Linux
+#  MAAT Monitor - lançador para macOS / Linux
 #  Copyright (c) 2026 Márcio Luis Amorim - Licença MIT
 #
 #  Uso:
-#    ./themis.sh instalar          (uma vez)
-#    ./themis.sh monitorar
-#    ./themis.sh painel
-#    ./themis.sh consultar <CNJ>
-#    ./themis.sh testar
-#    ./themis.sh oab
+#    ./maat.sh instalar          (uma vez)
+#    ./maat.sh monitorar
+#    ./maat.sh painel
+#    ./maat.sh consultar <CNJ>
+#    ./maat.sh testar
+#    ./maat.sh oab
 # ============================================================
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -29,15 +29,15 @@ case "${1:-}" in
         PY="venv/bin/python"
         "$PY" -m pip install --upgrade pip >/dev/null
         "$PY" -m pip install -r requirements.txt
-        "$PY" themis.py --preparar
+        "$PY" maat.py --preparar
         echo
-        echo "Instalação concluída. Edite config.ini e processos.txt, depois: ./themis.sh monitorar"
+        echo "Instalação concluída. Edite config.ini e processos.txt, depois: ./maat.sh monitorar"
         ;;
     "")
-        echo "Uso: ./themis.sh {instalar|monitorar|painel|consultar <CNJ>|testar|oab}"
+        echo "Uso: ./maat.sh {instalar|monitorar|painel|consultar <CNJ>|testar|oab}"
         exit 2
         ;;
     *)
-        exec "$PY" themis.py "$@"
+        exec "$PY" maat.py "$@"
         ;;
 esac

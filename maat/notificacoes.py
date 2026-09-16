@@ -1,5 +1,5 @@
 """
-Notificações do THEMIS Monitor: e-mail (SMTP com STARTTLS) e WhatsApp (CallMeBot).
+Notificações do MAAT Monitor: e-mail (SMTP com STARTTLS) e WhatsApp (CallMeBot).
 
 Nenhuma credencial é gravada em log. As funções de envio nunca lançam: devolvem
 ``True`` em sucesso e ``False`` quando desativadas, incompletas ou em falha.
@@ -19,9 +19,9 @@ from email.mime.text import MIMEText
 
 import requests
 
-from themis import __version__
+from maat import __version__
 
-log = logging.getLogger("themis.notificacoes")
+log = logging.getLogger("maat.notificacoes")
 
 CALLMEBOT_URL = "https://api.callmebot.com/whatsapp.php"
 MAX_PROCESSOS_WHATSAPP = 5
@@ -115,7 +115,7 @@ def montar_email_html(
     erros = int(estatisticas.get("erros", 0))
     novos_and = int(estatisticas.get("novos_andamentos", 0))
     return f"""<html><body style="font-family:sans-serif;color:#1a0832;max-width:600px;margin:auto">
-<h2 style="color:#3d1a6e">THEMIS &mdash; Resumo do Monitoramento</h2>
+<h2 style="color:#3d1a6e">MAAT &mdash; Resumo do Monitoramento</h2>
 <p style="color:#888">{e(str(agora_fmt))}</p>
 <table style="width:100%;border-collapse:collapse;margin:16px 0">
   <tr><td style="padding:8px;background:#f4f0fa"><strong>Processos verificados</strong></td><td style="padding:8px">{total}</td></tr>
@@ -126,7 +126,7 @@ def montar_email_html(
 <h3 style="color:#3d1a6e">Processos com novidade</h3>
 {lista}
 <hr style="margin-top:32px">
-<p style="font-size:11px;color:#aaa">THEMIS Monitor v{e(__version__)} &mdash; &copy; 2026 Márcio Luis Amorim &mdash; Dados via DataJud/CNJ</p>
+<p style="font-size:11px;color:#aaa">MAAT Monitor v{e(__version__)} &mdash; &copy; 2026 Márcio Luis Amorim &mdash; Dados via DataJud/CNJ</p>
 </body></html>"""
 
 
@@ -137,7 +137,7 @@ def montar_whatsapp_texto(
 ) -> str:
     """Monta o texto curto do WhatsApp (totais e até 5 processos com novidade)."""
     linhas = [
-        f"*THEMIS — Novidades {agora_fmt}*",
+        f"*MAAT — Novidades {agora_fmt}*",
         f"Verificados: {int(estatisticas.get('total', 0))} | "
         f"OK: {int(estatisticas.get('sucesso', 0))} | "
         f"Erros: {int(estatisticas.get('erros', 0))} | "

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import re
 
-from themis.constantes import TR_PARA_UF, TRIBUNAIS, UFS_JUSTICA_MILITAR_ESTADUAL
+from maat.constantes import TR_PARA_UF, TRIBUNAIS, UFS_JUSTICA_MILITAR_ESTADUAL
 
 TAMANHO = 20
 

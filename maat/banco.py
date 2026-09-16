@@ -1,5 +1,5 @@
 """
-Banco de dados SQLite local do THEMIS Monitor: schema, gravação, leitura e backup.
+Banco de dados SQLite local do MAAT Monitor: schema, gravação, leitura e backup.
 
 Copyright (c) 2026 Márcio Luis Amorim — Licença MIT
 """
@@ -13,13 +13,13 @@ from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
-from themis import analise, cnj
+from maat import analise, cnj
 
 if TYPE_CHECKING:  # pragma: no cover
-    from themis.config import Caminhos
+    from maat.config import Caminhos
 
 BACKUPS_MANTIDOS = 10
-PREFIXO_BACKUP = "themis_backup_"
+PREFIXO_BACKUP = "maat_backup_"
 LIMITE_MOVIMENTOS = 100
 
 # Colunas acrescentadas ao longo das versões. Lista CONSTANTE: nunca vem de entrada do usuário,

@@ -1,10 +1,10 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Descoberta por OAB
+REM  MAAT Monitor - Descoberta por OAB
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Descoberta por OAB
+title MAAT - Descoberta por OAB
 cd /d "%~dp0"
 
 set "PYTHON_EXE=%~dp0venv\Scripts\python.exe"
@@ -25,7 +25,7 @@ if not exist "%PYTHON_EXE%" (
     )
 )
 
-"%PYTHON_EXE%" %PYTHON_ARGS% themis.py oab
+"%PYTHON_EXE%" %PYTHON_ARGS% maat.py oab
 if errorlevel 1 (
     echo.
     echo [ERRO] Algo deu errado. Leia a mensagem acima.

@@ -1,4 +1,4 @@
-"""Testes da linha de comando — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes da linha de comando — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 import sys
 import types
@@ -6,8 +6,8 @@ from pathlib import Path
 
 import pytest
 
-import themis
-from themis import banco, cli, config, datajud, descoberta_oab
+import maat
+from maat import banco, cli, config, datajud, descoberta_oab
 
 CNJ_FMT = "0000001-05.2025.8.26.0100"
 CNJ_LIMPO = "00000010520258260100"
@@ -24,10 +24,10 @@ FONTE_MINIMA = {
 
 
 def _modulo_falso(monkeypatch, nome: str, **atributos) -> types.SimpleNamespace:
-    """Instala um módulo falso `themis.<nome>` mesmo que o real exista ou ainda não exista."""
+    """Instala um módulo falso `maat.<nome>` mesmo que o real exista ou ainda não exista."""
     falso = types.SimpleNamespace(**atributos)
-    monkeypatch.setitem(sys.modules, f"themis.{nome}", falso)
-    monkeypatch.setattr(themis, nome, falso, raising=False)
+    monkeypatch.setitem(sys.modules, f"maat.{nome}", falso)
+    monkeypatch.setattr(maat, nome, falso, raising=False)
     return falso
 
 
@@ -89,7 +89,7 @@ def test_preparar_cria_arquivos(tmp_home, capsys):
     assert (Path(tmp_home) / "relatorios").is_dir()
     assert (Path(tmp_home) / "backups").is_dir()
     saida = capsys.readouterr().out
-    assert "THEMIS Monitor v1.0.0" in saida
+    assert "MAAT Monitor v1.0.0" in saida
     assert "Arquivo criado: config.ini" in saida
 
 
@@ -108,7 +108,7 @@ def test_consultar_cnj_invalido(tmp_home, capsys):
 
 def test_consultar_tribunal_nao_identificado(tmp_home, capsys):
     # J=2 (CNJ) não é consultável no DataJud: dígito válido, tribunal desconhecido
-    from themis import cnj as mod_cnj
+    from maat import cnj as mod_cnj
 
     base = "0000001" + "2025" + "2" + "00" + "0000"
     for dd in range(1, 100):
@@ -172,7 +172,7 @@ def test_monitorar_segunda_rodada_gera_backup(sem_rede_nem_navegador, monkeypatc
     monkeypatch.setattr(cli.time, "sleep", lambda s: None)
     assert cli.main(["monitorar", "--sem-navegador"]) == 0
     assert cli.main(["monitorar", "--sem-navegador"]) == 0
-    assert len(list(caminhos.backups.glob("themis_backup_*.db"))) == 1
+    assert len(list(caminhos.backups.glob("maat_backup_*.db"))) == 1
 
 
 def test_monitorar_com_erro_retorna_1(sem_rede_nem_navegador, monkeypatch, capsys):
@@ -249,7 +249,7 @@ def test_oab_gera_guia(sem_rede_nem_navegador, capsys):
     guia = caminhos.base / "buscar-oab-guia.html"
     assert guia.exists()
     html = guia.read_text(encoding="utf-8")
-    assert "THEMIS" in html and "OGUM" not in html
+    assert "MAAT" in html and "OGUM" not in html
     assert "numeroOAB=123456" in html and "estadoOAB=RJ" in html
     assert "Dr. &lt;Teste&gt; &amp; Cia" in html  # dados do config escapados
     assert "alert(" not in html

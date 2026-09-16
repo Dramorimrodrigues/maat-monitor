@@ -1,4 +1,4 @@
-"""Testes do painel web local — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do painel web local — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 import http.client
 import json
@@ -6,7 +6,7 @@ import threading
 
 import pytest
 
-from themis import config, datajud, painel
+from maat import config, datajud, painel
 
 CNJ = "00000010520258260100"  # 0000001-05.2025.8.26.0100 (dígito válido)
 CNJ_FMT = "0000001-05.2025.8.26.0100"
@@ -73,7 +73,7 @@ def test_get_pagina_principal(servidor):
     assert headers["X-Content-Type-Options"] == "nosniff"
     assert headers["Referrer-Policy"] == "no-referrer"
     assert headers["Cache-Control"] == "no-cache"
-    assert "THEMIS" in corpo and "Painel Interativo" in corpo
+    assert "MAAT" in corpo and "Painel Interativo" in corpo
     assert "Consultar por CNJ" in corpo and "Importar por OAB" in corpo
     assert "alert(" not in corpo
 
@@ -203,7 +203,7 @@ def test_adicionar_unico(servidor):
 def test_gerar_pagina_sem_banco(tmp_home):
     config.garantir_arquivos_iniciais(config.caminhos())
     pagina = painel.gerar_pagina()
-    assert "THEMIS" in pagina
+    assert "MAAT" in pagina
     assert "Nenhum processo" in pagina
 
 

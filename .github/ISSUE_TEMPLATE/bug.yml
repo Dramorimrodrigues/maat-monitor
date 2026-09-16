@@ -4,7 +4,7 @@ labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: "Obrigado por ajudar a melhorar o THEMIS. Nao cole numeros de processo reais de clientes."
+      value: "Obrigado por ajudar a melhorar o MAAT. Nao cole numeros de processo reais de clientes."
   - type: textarea
     id: descricao
     attributes:
@@ -22,8 +22,8 @@ body:
   - type: input
     id: versao
     attributes:
-      label: Versao do THEMIS
-      description: Saida de `python themis.py --versao`
+      label: Versao do MAAT
+      description: Saida de `python maat.py --versao`
   - type: dropdown
     id: so
     attributes:

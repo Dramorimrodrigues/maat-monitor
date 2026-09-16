@@ -1,5 +1,5 @@
 """
-Constantes do THEMIS Monitor: tribunais do DataJud, palavras-chave e prazos.
+Constantes do MAAT Monitor: tribunais do DataJud, palavras-chave e prazos.
 
 Copyright (c) 2026 Márcio Luis Amorim — Licença MIT
 """

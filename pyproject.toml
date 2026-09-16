@@ -1,5 +1,5 @@
 [project]
-name = "themis-monitor"
+name = "maat-monitor"
 version = "1.0.0"
 description = "Monitoramento gratuito e local de processos judiciais brasileiros via API pública DataJud/CNJ"
 readme = "README.md"
@@ -10,8 +10,8 @@ keywords = ["datajud", "cnj", "advocacia", "legaltech", "processos", "tribunais"
 dependencies = ["requests>=2.31.0", "truststore>=0.9.0; python_version >= '3.10'"]
 
 [project.urls]
-Homepage = "https://github.com/Dramorimrodrigues/themis-monitor"
-Issues = "https://github.com/Dramorimrodrigues/themis-monitor/issues"
+Homepage = "https://github.com/Dramorimrodrigues/maat-monitor"
+Issues = "https://github.com/Dramorimrodrigues/maat-monitor/issues"
 
 [tool.ruff]
 line-length = 110

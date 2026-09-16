@@ -1,12 +1,12 @@
-# Contribuindo com o THEMIS
+# Contribuindo com o MAAT
 
 Obrigado pelo interesse. Toda contribuição é bem-vinda: correções, tribunais novos, traduções, documentação.
 
 ## Preparar o ambiente
 
 ```bash
-git clone https://github.com/Dramorimrodrigues/themis-monitor.git
-cd themis-monitor
+git clone https://github.com/Dramorimrodrigues/maat-monitor.git
+cd maat-monitor
 python -m venv venv
 venv\Scripts\activate        # Windows  |  source venv/bin/activate  (macOS/Linux)
 pip install -r requirements-dev.txt
@@ -34,17 +34,17 @@ python -m pytest
 
 | Módulo | Responsabilidade |
 |---|---|
-| `themis/cnj.py` | limpar, formatar, validar dígito verificador e identificar tribunal |
-| `themis/constantes.py` | catálogo de tribunais do DataJud, palavras-chave, prazos |
-| `themis/analise.py` | urgência, prazos estimados, formatação de datas/valores |
-| `themis/config.py` | `config.ini`, `processos.txt`, caminhos |
-| `themis/banco.py` | SQLite: schema, gravação, leitura, backup |
-| `themis/datajud.py` | cliente HTTP da API pública do CNJ |
-| `themis/notificacoes.py` | e-mail e WhatsApp |
-| `themis/relatorio.py` | HTML e CSV |
-| `themis/painel.py` | servidor web local |
-| `themis/descoberta_oab.py` | guia de descoberta por OAB |
-| `themis/cli.py` | linha de comando |
+| `maat/cnj.py` | limpar, formatar, validar dígito verificador e identificar tribunal |
+| `maat/constantes.py` | catálogo de tribunais do DataJud, palavras-chave, prazos |
+| `maat/analise.py` | urgência, prazos estimados, formatação de datas/valores |
+| `maat/config.py` | `config.ini`, `processos.txt`, caminhos |
+| `maat/banco.py` | SQLite: schema, gravação, leitura, backup |
+| `maat/datajud.py` | cliente HTTP da API pública do CNJ |
+| `maat/notificacoes.py` | e-mail e WhatsApp |
+| `maat/relatorio.py` | HTML e CSV |
+| `maat/painel.py` | servidor web local |
+| `maat/descoberta_oab.py` | guia de descoberta por OAB |
+| `maat/cli.py` | linha de comando |
 
 ## Licença
 

@@ -1,5 +1,5 @@
 """
-Caminhos de dados, leitura de config.ini e de processos.txt do THEMIS Monitor.
+Caminhos de dados, leitura de config.ini e de processos.txt do MAAT Monitor.
 
 Copyright (c) 2026 Márcio Luis Amorim — Licença MIT
 """
@@ -14,9 +14,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import NamedTuple
 
-from themis import cnj
+from maat import cnj
 
-# Raiz do repositório: pai do pacote themis/ (onde ficam os arquivos .example)
+# Raiz do repositório: pai do pacote maat/ (onde ficam os arquivos .example)
 RAIZ_REPO = Path(__file__).resolve().parent.parent
 
 # Protege processos.txt contra escritas simultâneas (painel + CLI na mesma máquina)
@@ -48,14 +48,14 @@ class Processo(NamedTuple):
 
 
 def caminhos() -> Caminhos:
-    """Monta os caminhos a partir da env THEMIS_HOME (ou da raiz do repositório)."""
-    home = os.environ.get("THEMIS_HOME", "").strip()
+    """Monta os caminhos a partir da env MAAT_HOME (ou da raiz do repositório)."""
+    home = os.environ.get("MAAT_HOME", "").strip()
     base = Path(home).expanduser().resolve() if home else RAIZ_REPO
     return Caminhos(
         base=base,
         config=base / "config.ini",
         processos=base / "processos.txt",
-        banco=base / "themis.db",
+        banco=base / "maat.db",
         relatorios=base / "relatorios",
         backups=base / "backups",
         exemplos=RAIZ_REPO,

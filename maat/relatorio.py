@@ -1,8 +1,8 @@
 """
-Camada HTML/CSV do THEMIS Monitor: folha de estilo e JS compartilhados, cards de
+Camada HTML/CSV do MAAT Monitor: folha de estilo e JS compartilhados, cards de
 processos, relatório HTML e exportação CSV.
 
-O painel (``themis.painel``) reutiliza as mesmas peças (``CSS``, ``JS_FILTROS``,
+O painel (``maat.painel``) reutiliza as mesmas peças (``CSS``, ``JS_FILTROS``,
 ``html_cards``, ``html_historico``, ``rodape_html``), por isso relatório e painel
 têm exatamente o mesmo visual. Todo texto vindo de dados passa por ``html.escape``.
 
@@ -19,10 +19,10 @@ from html import escape
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
-from themis import __version__, analise, banco, cnj
+from maat import __version__, analise, banco, cnj
 
 if TYPE_CHECKING:  # pragma: no cover
-    from themis.config import Caminhos
+    from maat.config import Caminhos
 
 # ------------------------------------------------------------------
 # CSS único (relatório + painel)
@@ -285,7 +285,7 @@ def _e(valor: Any) -> str:
 def rodape_html(extra: str = "") -> str:
     """Rodapé padrão com versão e autoria; ``extra`` já deve ser HTML seguro."""
     return (
-        f"<footer><strong>THEMIS Monitor v{__version__}</strong> &mdash; "
+        f"<footer><strong>MAAT Monitor v{__version__}</strong> &mdash; "
         f"&copy; 2026 M&aacute;rcio Luis Amorim &mdash; Dados via API DataJud/CNJ {extra}</footer>"
     )
 
@@ -440,7 +440,7 @@ def _html_card(p: dict) -> str:
       <div class="info-item"><div class="info-label">Movimentos</div><div class="info-valor">{total_movs}</div></div>
       <div class="info-item"><div class="info-label">Cliente</div><div class="info-valor">{cliente or "&mdash;"}</div></div>
       <div class="info-item"><div class="info-label">&Aacute;rea / Status</div><div class="info-valor">{area or "&mdash;"} &middot; {status}</div></div>
-      <div class="info-item"><div class="info-label">&Uacute;lt. verifica&ccedil;&atilde;o THEMIS</div><div class="info-valor">{_e(p.get("check_fmt") or "—")}</div></div>
+      <div class="info-item"><div class="info-label">&Uacute;lt. verifica&ccedil;&atilde;o MAAT</div><div class="info-valor">{_e(p.get("check_fmt") or "—")}</div></div>
     </div>
     <div class="movimentos-secao">
       <div class="movimentos-titulo">Andamentos <span class="mov-count">{len(movs)}</span></div>
@@ -492,7 +492,7 @@ def html_cabecalho(subtitulo: str, config: dict, agora_fmt: str) -> str:
 <header class="header">
   <div class="header-logo">
     <div>
-      <div class="titulo">THEMIS</div>
+      <div class="titulo">MAAT</div>
       <div class="subtitulo">{_e(subtitulo)}</div>
     </div>
   </div>
@@ -541,7 +541,7 @@ def gerar_relatorio_html(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THEMIS &mdash; Relat&oacute;rio {_e(agora_fmt)}</title>
+<title>MAAT &mdash; Relat&oacute;rio {_e(agora_fmt)}</title>
 <style>{CSS}</style>
 </head>
 <body>
@@ -597,7 +597,7 @@ def gerar_csv(conn: sqlite3.Connection, caminhos: Caminhos) -> tuple[Path, Path]
             "CNJ", "Apelido", "Cliente", "Área", "Status",
             "Tribunal", "Classe", "Assunto", "Órgão Julgador",
             "Grau", "Valor da Causa", "Ajuizamento", "Últ. Atualização",
-            "Total Movimentos", "Últ. verificação THEMIS",
+            "Total Movimentos", "Últ. verificação MAAT",
         ])
         for r in cur.fetchall():
             w.writerow([celula_csv(v) for v in [cnj.formatar(r[0])] + list(r[1:])])

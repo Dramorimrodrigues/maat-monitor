@@ -1,10 +1,10 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Teste de Conexao
+REM  MAAT Monitor - Teste de Conexao
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Teste de Conexao
+title MAAT - Teste de Conexao
 cd /d "%~dp0"
 
 set "PYTHON_EXE=%~dp0venv\Scripts\python.exe"
@@ -28,6 +28,6 @@ if not exist "%PYTHON_EXE%" (
 echo.
 echo  Testando conexao com a API DataJud do CNJ...
 echo.
-"%PYTHON_EXE%" %PYTHON_ARGS% themis.py testar
+"%PYTHON_EXE%" %PYTHON_ARGS% maat.py testar
 echo.
 pause

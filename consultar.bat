@@ -1,10 +1,10 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Consulta Avulsa
+REM  MAAT Monitor - Consulta Avulsa
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Consulta Avulsa
+title MAAT - Consulta Avulsa
 cd /d "%~dp0"
 
 set "PYTHON_EXE=%~dp0venv\Scripts\python.exe"
@@ -35,7 +35,7 @@ if "!CNJ!"=="" (
     exit /b 1
 )
 rem Delayed expansion evita que caracteres especiais sejam interpretados pelo cmd.
-"%PYTHON_EXE%" %PYTHON_ARGS% themis.py consultar "!CNJ!"
+"%PYTHON_EXE%" %PYTHON_ARGS% maat.py consultar "!CNJ!"
 if errorlevel 1 (
     echo.
     echo [ERRO] Consulta falhou. Verifique o numero e a conexao com a internet.

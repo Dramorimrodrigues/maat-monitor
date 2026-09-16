@@ -1,9 +1,9 @@
-"""Testes do módulo config — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do módulo config — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 from pathlib import Path
 
-from themis import cnj, config
-from themis.config import Processo
+from maat import cnj, config
+from maat.config import Processo
 
 # CNJs fictícios com dígito verificador válido (módulo 97)
 CNJ_A = "00000010520258260100"  # 0000001-05.2025.8.26.0100
@@ -17,15 +17,15 @@ def escrever_processos(c: config.Caminhos, texto: str, encoding: str = "utf-8") 
     c.processos.write_text(texto, encoding=encoding)
 
 
-def test_caminhos_respeita_themis_home(tmp_home):
+def test_caminhos_respeita_maat_home(tmp_home):
     c = config.caminhos()
     assert c.base == Path(tmp_home).resolve()
     assert c.config == c.base / "config.ini"
     assert c.processos == c.base / "processos.txt"
-    assert c.banco == c.base / "themis.db"
+    assert c.banco == c.base / "maat.db"
     assert c.relatorios == c.base / "relatorios"
     assert c.backups == c.base / "backups"
-    # Exemplos ficam sempre na raiz do repositório, não em THEMIS_HOME
+    # Exemplos ficam sempre na raiz do repositório, não em MAAT_HOME
     assert (c.exemplos / "config.example.ini").exists()
     assert (c.exemplos / "processos.example.txt").exists()
     assert c.exemplos != c.base

@@ -1,10 +1,10 @@
-"""Testes do módulo banco — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do módulo banco — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 import copy
 
 import pytest
 
-from themis import banco, config
+from maat import banco, config
 
 CNJ = "00000010520258260100"  # 0000001-05.2025.8.26.0100 (fictício, dígito válido)
 CNJ_FMT = "0000001-05.2025.8.26.0100"
@@ -194,13 +194,13 @@ def test_fazer_backup_cria_arquivo_e_mantem_dez(tmp_home):
 
     destino = banco.fazer_backup(c)
     assert destino is not None and destino.exists()
-    assert destino.name.startswith("themis_backup_") and destino.suffix == ".db"
+    assert destino.name.startswith("maat_backup_") and destino.suffix == ".db"
     copia = banco.conectar(destino)
     assert copia.execute("SELECT rotulo FROM processos WHERE cnj=?", (CNJ,)).fetchone()[0] == "Caso A"
     copia.close()
 
     for _ in range(11):
         banco.fazer_backup(c)
-    restantes = sorted(c.backups.glob("themis_backup_*.db"))
+    restantes = sorted(c.backups.glob("maat_backup_*.db"))
     assert len(restantes) == 10
     assert not list(c.backups.glob("*.tmp"))

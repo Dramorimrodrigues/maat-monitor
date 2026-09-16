@@ -1,10 +1,10 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Painel Web
+REM  MAAT Monitor - Painel Web
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Painel Web
+title MAAT - Painel Web
 cd /d "%~dp0"
 
 set "PYTHON_EXE=%~dp0venv\Scripts\python.exe"
@@ -29,7 +29,7 @@ echo.
 echo  Iniciando o painel em http://127.0.0.1:5000 ...
 echo  O navegador abrira sozinho. Para encerrar: feche esta janela ou Ctrl+C.
 echo.
-"%PYTHON_EXE%" %PYTHON_ARGS% themis.py painel
+"%PYTHON_EXE%" %PYTHON_ARGS% maat.py painel
 if errorlevel 1 (
     echo.
     echo [ERRO] Falha ao iniciar o painel. Leia a mensagem acima.

@@ -1,10 +1,10 @@
 <div align="center">
 
-# ⚖️ THEMIS Monitor
+# ⚖️ MAAT Monitor
 
 **Acompanhamento gratuito de processos judiciais brasileiros — direto da fonte oficial, sem sair do seu computador.**
 
-[![CI](https://github.com/Dramorimrodrigues/themis-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/Dramorimrodrigues/themis-monitor/actions/workflows/ci.yml)
+[![CI](https://github.com/Dramorimrodrigues/maat-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/Dramorimrodrigues/maat-monitor/actions/workflows/ci.yml)
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-c9a440.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-3d1a6e.svg)](https://www.python.org/downloads/)
 [![Fonte: DataJud/CNJ](https://img.shields.io/badge/fonte-DataJud%20%2F%20CNJ-1a8a5a.svg)](https://datajud-wiki.cnj.jus.br/api-publica/)
@@ -12,19 +12,19 @@
 
 [🇺🇸 English version](README.md)
 
-<img src="docs/screenshots/painel.png" alt="Painel do THEMIS Monitor" width="880">
+<img src="docs/screenshots/painel.png" alt="Painel do MAAT Monitor" width="880">
 
 </div>
 
 ---
 
-## Por que o THEMIS existe
+## Por que o MAAT existe
 
 Todo advogado vive o mesmo ritual: abrir três portais de tribunal, digitar CAPTCHA, procurar processo por processo, torcer para não ter perdido nada. Ou pagar de R$ 80 a R$ 300 por mês por um serviço que faz isso por você — e guarda os dados dos seus clientes num servidor que não é seu.
 
-O THEMIS faz o trabalho chato de graça, com dados oficiais, **na sua máquina**:
+O MAAT faz o trabalho chato de graça, com dados oficiais, **na sua máquina**:
 
-| | THEMIS | Serviços pagos | Consulta manual |
+| | MAAT | Serviços pagos | Consulta manual |
 |---|:---:|:---:|:---:|
 | Custo | **R$ 0** | R$ 80–300 / mês | seu tempo |
 | Fonte dos dados | API oficial do CNJ | variada | portais |
@@ -53,21 +53,21 @@ O THEMIS faz o trabalho chato de graça, com dados oficiais, **na sua máquina**
 
 ## O que ele NÃO faz (leia antes de confiar)
 
-> **O THEMIS não substitui o PJe Push, o Diário Oficial nem a intimação eletrônica para contagem de prazo fatal.**
+> **O MAAT não substitui o PJe Push, o Diário Oficial nem a intimação eletrônica para contagem de prazo fatal.**
 
 - O DataJud costuma refletir a movimentação **24 a 48 horas depois** do tribunal — às vezes mais, dependendo do tribunal.
 - Por proteção de dados (LGPD), o DataJud **não traz nomes das partes nem advogados**. Você informa os processos; ele não descobre sozinho pela sua OAB (o painel ajuda com um guia para os portais).
 - Processos em **segredo de justiça** não aparecem.
 - Os "prazos estimados" são uma **conta simples em dias corridos** a partir da data do andamento — servem como lembrete, não como cálculo processual.
 
-Use o THEMIS como radar diário. Para prazo, confira sempre a fonte oficial.
+Use o MAAT como radar diário. Para prazo, confira sempre a fonte oficial.
 
 ## Instalação em 3 passos
 
 ### Windows
 
 1. **Instale o Python** em [python.org/downloads](https://www.python.org/downloads/) — marque **"Add Python to PATH"** na primeira tela.
-2. **Baixe o THEMIS**: botão verde **Code → Download ZIP** aqui no GitHub, descompacte onde quiser.
+2. **Baixe o MAAT**: botão verde **Code → Download ZIP** aqui no GitHub, descompacte onde quiser.
 3. **Clique duas vezes em `instalar.bat`**. Pronto.
 
 Depois: abra `config.ini` (coloque seu nome e OAB), cole seus processos em `processos.txt` e clique em **`monitorar.bat`**.
@@ -75,21 +75,21 @@ Depois: abra `config.ini` (coloque seu nome e OAB), cole seus processos em `proc
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/Dramorimrodrigues/themis-monitor.git
-cd themis-monitor
-./themis.sh instalar
-./themis.sh monitorar
+git clone https://github.com/Dramorimrodrigues/maat-monitor.git
+cd maat-monitor
+./maat.sh instalar
+./maat.sh monitorar
 ```
 
 ## Uso no dia a dia
 
 | Quero… | Windows | macOS / Linux |
 |---|---|---|
-| Acompanhar todos os meus processos | `monitorar.bat` | `./themis.sh monitorar` |
-| Abrir o painel interativo | `painel.bat` | `./themis.sh painel` |
-| Consultar um processo avulso | `consultar.bat` | `./themis.sh consultar 0000000-00.0000.0.00.0000` |
-| Testar a conexão com o DataJud | `testar.bat` | `./themis.sh testar` |
-| Descobrir meus processos pela OAB | `buscar-oab.bat` | `./themis.sh oab` |
+| Acompanhar todos os meus processos | `monitorar.bat` | `./maat.sh monitorar` |
+| Abrir o painel interativo | `painel.bat` | `./maat.sh painel` |
+| Consultar um processo avulso | `consultar.bat` | `./maat.sh consultar 0000000-00.0000.0.00.0000` |
+| Testar a conexão com o DataJud | `testar.bat` | `./maat.sh testar` |
+| Descobrir meus processos pela OAB | `buscar-oab.bat` | `./maat.sh oab` |
 
 ### O arquivo `processos.txt`
 
@@ -101,12 +101,12 @@ Um processo por linha. Só o número já basta; o resto é opcional:
 0000001-05.2025.8.26.0100 | Apelido do caso | Nome do cliente | Cível
 ```
 
-O THEMIS **identifica o tribunal pelo número** e **valida o dígito verificador** — um número digitado errado é avisado antes de consultar.
+O MAAT **identifica o tribunal pelo número** e **valida o dígito verificador** — um número digitado errado é avisado antes de consultar.
 
 ### Rodar sozinho todo dia
 
 **Windows:** Agendador de Tarefas → Criar Tarefa Básica → Diariamente 07:00 → Iniciar um programa → `monitorar.bat`.
-**macOS/Linux:** `crontab -e` e adicione `0 7 * * * /caminho/themis-monitor/themis.sh monitorar --sem-navegador`.
+**macOS/Linux:** `crontab -e` e adicione `0 7 * * * /caminho/maat-monitor/maat.sh monitorar --sem-navegador`.
 
 ### Notificações (opcional)
 
@@ -131,8 +131,8 @@ Detalhes e como reportar falhas: [SECURITY.md](SECURITY.md).
 ## Por dentro
 
 ```
-themis.py                ← ponto de entrada (monitorar | painel | consultar | testar | oab)
-themis/
+maat.py                  ← ponto de entrada (monitorar | painel | consultar | testar | oab)
+maat/
   cnj.py                 ← limpar, formatar, validar dígito, identificar tribunal
   constantes.py          ← catálogo de tribunais, palavras-chave, prazos
   analise.py             ← urgência, prazos estimados, formatação
@@ -169,10 +169,10 @@ Código sob licença **MIT** — use, modifique e distribua à vontade, mantendo
 Copyright (c) 2026 Márcio Luis Amorim
 ```
 
-Se o THEMIS te poupou uma hora de portal, deixe uma ⭐ — ajuda outros advogados a encontrarem o projeto.
+Se o MAAT te poupou uma hora de portal, deixe uma ⭐ — ajuda outros advogados a encontrarem o projeto.
 
 ---
 
 <div align="center">
-<sub>THEMIS Monitor não tem vínculo com o CNJ ou com qualquer tribunal. DataJud é um serviço público do Conselho Nacional de Justiça.</sub>
+<sub>MAAT Monitor não tem vínculo com o CNJ ou com qualquer tribunal. DataJud é um serviço público do Conselho Nacional de Justiça.</sub>
 </div>

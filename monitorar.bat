@@ -1,10 +1,10 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Monitoramento
+REM  MAAT Monitor - Monitoramento
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Monitoramento
+title MAAT - Monitoramento
 cd /d "%~dp0"
 
 set "PYTHON_EXE=%~dp0venv\Scripts\python.exe"
@@ -25,7 +25,7 @@ if not exist "%PYTHON_EXE%" (
     )
 )
 
-"%PYTHON_EXE%" %PYTHON_ARGS% themis.py monitorar
+"%PYTHON_EXE%" %PYTHON_ARGS% maat.py monitorar
 if errorlevel 1 (
     echo.
     echo [AVISO] Nenhum processo pode ser consultado. Verifique sua internet

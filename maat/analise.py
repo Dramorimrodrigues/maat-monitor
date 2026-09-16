@@ -13,7 +13,7 @@ from collections.abc import Iterable, Sequence
 from datetime import datetime, timedelta
 from typing import Any
 
-from themis.constantes import PALAVRAS_ALERTA, PALAVRAS_URGENTES, PRAZOS_TIPICOS
+from maat.constantes import PALAVRAS_ALERTA, PALAVRAS_URGENTES, PRAZOS_TIPICOS
 
 # Quantos andamentos recentes entram na análise de urgência
 MOVIMENTOS_ANALISADOS = 10

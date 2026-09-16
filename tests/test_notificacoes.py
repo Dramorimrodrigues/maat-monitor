@@ -7,7 +7,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from themis import __version__, notificacoes
+from maat import __version__, notificacoes
 
 CONFIG_EMAIL = {
     "email_ativo": "sim",
@@ -71,7 +71,7 @@ def test_email_ativado_envia(smtp_mock):
 def test_email_falha_login(smtp_mock, caplog):
     _, smtp = smtp_mock
     smtp.login.side_effect = smtplib.SMTPAuthenticationError(535, b"bad credentials")
-    with caplog.at_level("WARNING", logger="themis.notificacoes"):
+    with caplog.at_level("WARNING", logger="maat.notificacoes"):
         assert notificacoes.enviar_email(CONFIG_EMAIL, "Assunto", "<p>x</p>") is False
     assert "SMTPAuthenticationError" in caplog.text
     assert "senha-secreta" not in caplog.text
@@ -84,8 +84,8 @@ def test_montar_email_html_escapa_rotulo():
     saida = notificacoes.montar_email_html(stats, novidades, "16/09/2026 10:00")
     assert "<b>x</b>" not in saida
     assert "&lt;b&gt;x&lt;/b&gt;" in saida
-    assert "THEMIS &mdash; Resumo do Monitoramento" in saida
-    assert f"THEMIS Monitor v{__version__}" in saida
+    assert "MAAT &mdash; Resumo do Monitoramento" in saida
+    assert f"MAAT Monitor v{__version__}" in saida
     assert "Márcio Luis Amorim" in saida
     assert "4 novo(s) andamento(s)" in saida
 
@@ -145,7 +145,7 @@ def test_montar_whatsapp_texto_limita_a_cinco():
     stats = {"total": 10, "sucesso": 9, "erros": 1, "novos_andamentos": 7}
     novidades = [(f"cnj{i}", f"Rótulo {i}" if i % 2 else "", 1) for i in range(7)]
     texto = notificacoes.montar_whatsapp_texto(stats, novidades, "16/09/2026 10:00")
-    assert texto.startswith("*THEMIS — Novidades 16/09/2026 10:00*")
+    assert texto.startswith("*MAAT — Novidades 16/09/2026 10:00*")
     assert "Novos andamentos: 7" in texto
     assert texto.count("•") == 5
     assert "• cnj0: 1 andamento(s)" in texto

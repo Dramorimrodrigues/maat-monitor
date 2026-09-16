@@ -1,5 +1,5 @@
 """
-Painel web local do THEMIS Monitor (http://127.0.0.1:5000).
+Painel web local do MAAT Monitor (http://127.0.0.1:5000).
 
 Servidor HTTP da biblioteca padrão, sem framework. Escuta SOMENTE em 127.0.0.1,
 aceita apenas requisições com Host/Origin locais, limita o corpo a 1 MB e responde
@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from html import escape
 from typing import Any, Callable
 
-from themis import __version__, banco, cnj, config, constantes, datajud, relatorio
+from maat import __version__, banco, cnj, config, constantes, datajud, relatorio
 
 LIMITE_CORPO = 1024 * 1024  # 1 MB
 CAMPOS_TEXTO = ("cnj", "rotulo", "cliente", "area")
@@ -329,7 +329,7 @@ def gerar_pagina() -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THEMIS &mdash; Painel Interativo</title>
+<title>MAAT &mdash; Painel Interativo</title>
 <style>{relatorio.CSS}</style>
 </head>
 <body>
@@ -380,7 +380,7 @@ def _nome_de(obj: Any) -> str:
 class Handler(http.server.BaseHTTPRequestHandler):
     """Atende o painel: página em GET / e a API JSON em POST /api/*."""
 
-    server_version = f"THEMIS/{__version__}"
+    server_version = f"MAAT/{__version__}"
     sys_version = ""
 
     # ---- infraestrutura ----
@@ -583,7 +583,7 @@ def executar(porta: int = 5000, abrir_navegador: bool = True) -> int:
     config.garantir_arquivos_iniciais(config.caminhos())
     print()
     print("=" * 58)
-    print(f"  THEMIS Monitor v{__version__} — Painel Web Local")
+    print(f"  MAAT Monitor v{__version__} — Painel Web Local")
     print("  © 2026 Márcio Luis Amorim — Licença MIT")
     print("=" * 58)
     print()

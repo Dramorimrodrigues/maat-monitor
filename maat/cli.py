@@ -1,5 +1,5 @@
 """
-Linha de comando do THEMIS Monitor: ``python themis.py <comando>``.
+Linha de comando do MAAT Monitor: ``python maat.py <comando>``.
 
 Comandos: ``monitorar``, ``painel``, ``consultar <CNJ>``, ``testar``, ``oab``.
 Flags globais: ``--sem-navegador``, ``--versao``, ``--preparar``.
@@ -20,12 +20,12 @@ import webbrowser
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from themis import __version__, banco, cnj, config, constantes, datajud, notificacoes
+from maat import __version__, banco, cnj, config, constantes, datajud, notificacoes
 
 if TYPE_CHECKING:  # pragma: no cover
-    from themis.config import Caminhos
+    from maat.config import Caminhos
 
-URL_ISSUES = "https://github.com/Dramorimrodrigues/themis-monitor/issues"
+URL_ISSUES = "https://github.com/Dramorimrodrigues/maat-monitor/issues"
 PORTA_PADRAO = 5000
 LARGURA = 60
 
@@ -48,7 +48,7 @@ def log(msg: str, nivel: str = "INFO") -> None:
 def banner() -> None:
     print()
     print("=" * LARGURA)
-    print(f"  THEMIS Monitor v{__version__} — Acompanhamento Judicial")
+    print(f"  MAAT Monitor v{__version__} — Acompanhamento Judicial")
     print("  © 2026 Márcio Luis Amorim · Dados: API DataJud/CNJ")
     print("=" * LARGURA)
     print()
@@ -130,7 +130,7 @@ def cmd_consultar(cnj_bruto: str, abrir_navegador: bool) -> int:
         if novos:
             log(f"{novos} novo(s) andamento(s) detectado(s)!", "OK")
 
-        from themis import relatorio  # importação tardia (ver docstring do módulo)
+        from maat import relatorio  # importação tardia (ver docstring do módulo)
 
         estatisticas = {"total": 1, "sucesso": 1, "erros": 0, "novos_andamentos": novos, "lista_erros": []}
         arquivo = relatorio.gerar_relatorio_html(conn, cfg, caminhos, estatisticas, apenas_cnj=cnj_limpo)
@@ -168,7 +168,7 @@ def _notificar(cfg: dict, estatisticas: dict, processos_com_novidade: list) -> N
     agora_fmt = datetime.now().strftime("%d/%m/%Y às %H:%M")
     if str(cfg.get("email_ativo", "nao")).lower() == "sim":
         corpo = notificacoes.montar_email_html(estatisticas, processos_com_novidade, agora_fmt)
-        assunto = f"THEMIS — {estatisticas['novos_andamentos']} novo(s) andamento(s) · {agora_fmt}"
+        assunto = f"MAAT — {estatisticas['novos_andamentos']} novo(s) andamento(s) · {agora_fmt}"
         if notificacoes.enviar_email(cfg, assunto, corpo):
             log("E-mail de resumo enviado.", "OK")
         else:
@@ -193,7 +193,7 @@ def cmd_monitorar(abrir_navegador: bool) -> int:
     if not processos:
         log("Nenhum processo em processos.txt para monitorar.", "AVISO")
         log(f"Edite o arquivo {caminhos.processos} e cole os números CNJ,", "INFO")
-        log("ou use o painel (painel.bat / ./themis.sh painel) para cadastrar.", "INFO")
+        log("ou use o painel (painel.bat / ./maat.sh painel) para cadastrar.", "INFO")
         log("Formato: 0000000-00.0000.0.00.0000 | Apelido | Cliente | Área", "INFO")
         return 0
 
@@ -263,7 +263,7 @@ def cmd_monitorar(abrir_navegador: bool) -> int:
 
         print()
         log("Gerando relatórios...")
-        from themis import relatorio  # importação tardia (ver docstring do módulo)
+        from maat import relatorio  # importação tardia (ver docstring do módulo)
 
         arq_html = relatorio.gerar_relatorio_html(conn, cfg, caminhos, estatisticas)
         arq_csv_proc, arq_csv_mov = relatorio.gerar_csv(conn, caminhos)
@@ -280,13 +280,13 @@ def cmd_monitorar(abrir_navegador: bool) -> int:
 
 def cmd_painel(porta: int, abrir_navegador: bool) -> int:
     _preparar_ambiente()
-    from themis import painel  # importação tardia (ver docstring do módulo)
+    from maat import painel  # importação tardia (ver docstring do módulo)
 
     return int(painel.executar(porta=porta, abrir_navegador=abrir_navegador))
 
 
 def cmd_oab(abrir_navegador: bool) -> int:
-    from themis import descoberta_oab
+    from maat import descoberta_oab
 
     caminhos, _ = _preparar_ambiente()
     cfg = config.carregar_config(caminhos)
@@ -299,9 +299,9 @@ def cmd_oab(abrir_navegador: bool) -> int:
 
 def construir_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="themis",
-        description="THEMIS Monitor — acompanhamento gratuito e local de processos judiciais via API DataJud/CNJ.",
-        epilog="Exemplos: themis monitorar | themis consultar 0000001-05.2025.8.26.0100 | themis painel --porta 5000",
+        prog="maat",
+        description="MAAT Monitor — acompanhamento gratuito e local de processos judiciais via API DataJud/CNJ.",
+        epilog="Exemplos: maat monitorar | maat consultar 0000001-05.2025.8.26.0100 | maat painel --porta 5000",
     )
     parser.add_argument("--versao", action="store_true", help="mostra a versão e o copyright e sai")
     parser.add_argument(
@@ -337,7 +337,7 @@ def construir_parser() -> argparse.ArgumentParser:
 
 def _executar(args: argparse.Namespace, parser: argparse.ArgumentParser) -> int:
     if args.versao:
-        print(f"THEMIS Monitor v{__version__} — Copyright (c) 2026 Márcio Luis Amorim — Licença MIT")
+        print(f"MAAT Monitor v{__version__} — Copyright (c) 2026 Márcio Luis Amorim — Licença MIT")
         return 0
 
     if not args.comando and not args.preparar:

@@ -1,4 +1,4 @@
-# THEMIS Monitor - Lista de processos para monitorar
+# MAAT Monitor - Lista de processos para monitorar
 # ============================================
 # Copie este arquivo para processos.txt e cole UM numero CNJ por linha,
 # no formato:

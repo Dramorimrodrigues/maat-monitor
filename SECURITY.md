@@ -5,15 +5,15 @@
 Encontrou uma falha de segurança? **Não abra uma issue pública.**
 
 Use o canal privado do GitHub: **Security → Report a vulnerability**
-(https://github.com/Dramorimrodrigues/themis-monitor/security/advisories/new).
+(https://github.com/Dramorimrodrigues/maat-monitor/security/advisories/new).
 
 Respondo em até 7 dias com a confirmação e um prazo estimado de correção.
 
-## O que o THEMIS faz para proteger você
+## O que o MAAT faz para proteger você
 
 | Proteção | Como |
 |---|---|
-| Dados ficam na sua máquina | SQLite local (`themis.db`); nenhum servidor externo além da API oficial do CNJ |
+| Dados ficam na sua máquina | SQLite local (`maat.db`); nenhum servidor externo além da API oficial do CNJ |
 | Painel inacessível pela rede | Servidor escuta apenas em `127.0.0.1` e rejeita requisições cujo `Host`/`Origin` não seja local |
 | Sem credenciais no código | A única chave embutida é a **chave pública oficial** publicada pelo CNJ para a API DataJud |
 | HTTPS sempre validado | Nunca desliga a verificação de certificado; usa `truststore` para confiar nos certificados do sistema |

@@ -1,15 +1,15 @@
 @echo off
 REM ============================================================
-REM  THEMIS Monitor - Instalador (execute UMA vez)
+REM  MAAT Monitor - Instalador (execute UMA vez)
 REM  Copyright (c) 2026 Marcio Luis Amorim - Licenca MIT
 REM ============================================================
 chcp 65001 >nul
-title THEMIS - Instalador
+title MAAT - Instalador
 cd /d "%~dp0"
 
 echo.
 echo ============================================================
-echo   THEMIS Monitor - Instalacao
+echo   MAAT Monitor - Instalacao
 echo ============================================================
 echo.
 
@@ -59,9 +59,9 @@ if errorlevel 1 (
 echo.
 echo Preparando arquivos de configuracao...
 if exist venv\Scripts\python.exe (
-    venv\Scripts\python.exe themis.py --preparar
+    venv\Scripts\python.exe maat.py --preparar
 ) else (
-    "%PYTHON_EXE%" %PYTHON_ARGS% themis.py --preparar
+    "%PYTHON_EXE%" %PYTHON_ARGS% maat.py --preparar
 )
 
 echo.

@@ -1,5 +1,5 @@
 name: "Sugerir melhoria"
-description: Uma ideia para o THEMIS
+description: Uma ideia para o MAAT
 labels: [enhancement]
 body:
   - type: textarea

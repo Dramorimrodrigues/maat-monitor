@@ -1,5 +1,5 @@
 """
-Guia de descoberta de processos por OAB do THEMIS Monitor.
+Guia de descoberta de processos por OAB do MAAT Monitor.
 
 Gera um arquivo HTML local com links para os portais dos tribunais (com a OAB
 pré-preenchida quando o portal aceita), instruções passo a passo e um campo para
@@ -18,10 +18,10 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 from urllib.parse import urlencode
 
-from themis import __version__
+from maat import __version__
 
 if TYPE_CHECKING:  # pragma: no cover
-    from themis.config import Caminhos
+    from maat.config import Caminhos
 
 NOME_ARQUIVO = "buscar-oab-guia.html"
 
@@ -204,7 +204,7 @@ def gerar_guia(config: dict, caminhos: Caminhos) -> Path:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THEMIS — Descoberta de Processos por OAB {escape(oab_numero)}/{escape(oab_uf)}</title>
+<title>MAAT — Descoberta de Processos por OAB {escape(oab_numero)}/{escape(oab_uf)}</title>
 <style>{_ESTILO}</style>
 </head>
 <body>
@@ -226,7 +226,7 @@ def gerar_guia(config: dict, caminhos: Caminhos) -> Path:
 <li>Volte para esta página e cole tudo no campo grande no final (Ctrl+V)</li>
 <li>Repita para cada tribunal em que você atua</li>
 <li>Clique em "Limpar e gerar lista" — ele formata os números e mostra como deve ficar o processos.txt</li>
-<li>Copie o resultado final e cole no arquivo <code>processos.txt</code> (ou use o painel do THEMIS)</li>
+<li>Copie o resultado final e cole no arquivo <code>processos.txt</code> (ou use o painel do MAAT)</li>
 </ol>
 </div>
 """
@@ -258,7 +258,7 @@ automaticamente. <span class="contador" id="contador"></span></p>
 <div id="saida" class="saida"></div>
 </div>
 
-<p class="rodape">THEMIS Monitor v{escape(__version__)} — © 2026 Márcio Luis Amorim</p>
+<p class="rodape">MAAT Monitor v{escape(__version__)} — © 2026 Márcio Luis Amorim</p>
 </div>
 <script>{_SCRIPT}</script>
 </body>
@@ -302,7 +302,7 @@ def executar(config: dict, caminhos: Caminhos, abrir_navegador: bool = True) -> 
     print("=" * 60)
     print("  1. Siga o guia no navegador e resolva o CAPTCHA de cada portal")
     print("  2. Cole os CNJs encontrados no arquivo processos.txt (ou no painel)")
-    print("  3. Execute monitorar.bat (Windows) ou ./themis.sh monitorar (Mac/Linux)")
+    print("  3. Execute monitorar.bat (Windows) ou ./maat.sh monitorar (Mac/Linux)")
     print("=" * 60)
     print()
     return 0

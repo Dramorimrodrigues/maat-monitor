@@ -1,8 +1,8 @@
-"""Testes do módulo analise — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do módulo analise — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 from datetime import datetime, timedelta
 
-from themis import analise
+from maat import analise
 
 
 def test_normalizar_remove_acentos_e_baixa_caixa():

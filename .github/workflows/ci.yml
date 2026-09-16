@@ -30,4 +30,4 @@ jobs:
       - name: Testes (pytest)
         run: python -m pytest -q
       - name: Fumaça — CLI sem rede
-        run: python themis.py --versao
+        run: python maat.py --versao

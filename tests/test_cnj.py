@@ -1,9 +1,9 @@
-"""Testes do módulo cnj — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do módulo cnj — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 import pytest
 
-from themis import cnj
-from themis.constantes import TRIBUNAIS
+from maat import cnj
+from maat.constantes import TRIBUNAIS
 
 # Números reais de exemplo (públicos, usados apenas para validar o dígito verificador)
 CNJ_VALIDO_1 = "08292298220248190209"  # 0829229-82.2024.8.19.0209 (TJRJ)

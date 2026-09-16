@@ -1,8 +1,8 @@
-"""Testes do módulo relatorio — THEMIS Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
+"""Testes do módulo relatorio — MAAT Monitor. Copyright (c) 2026 Márcio Luis Amorim — MIT."""
 
 import pytest
 
-from themis import banco, config, relatorio
+from maat import banco, config, relatorio
 
 CNJ_A = "00000010520258260100"  # 0000001-05.2025.8.26.0100
 CNJ_B = "00010540420108260100"  # 0001054-04.2010.8.26.0100
@@ -63,9 +63,9 @@ def test_relatorio_contem_marca_autoria_e_arquivo_na_pasta(conn, caminhos):
     assert arquivo.parent == caminhos.relatorios
     assert arquivo.name.startswith("relatorio_") and arquivo.suffix == ".html"
     html = arquivo.read_text(encoding="utf-8")
-    assert "THEMIS" in html
+    assert "MAAT" in html
     assert "rcio Luis Amorim" in html  # "M&aacute;rcio Luis Amorim" no rodapé
-    assert "<title>THEMIS &mdash; Relat&oacute;rio" in html
+    assert "<title>MAAT &mdash; Relat&oacute;rio" in html
     assert "Hist&oacute;rico de Execu" in html
     assert 'data-urgencia="alerta"' in html  # Intimação => alerta
     assert "Prazo estimado" in html
@@ -104,7 +104,7 @@ def test_html_historico(conn):
 def test_rodape_html():
     rodape = relatorio.rodape_html("&mdash; extra")
     assert rodape.startswith("<footer>") and rodape.endswith("</footer>")
-    assert "THEMIS Monitor v" in rodape and "&mdash; extra" in rodape
+    assert "MAAT Monitor v" in rodape and "&mdash; extra" in rodape
 
 
 @pytest.mark.parametrize("valor", ["=SOMA(A1)", "+1", "-1", "@cmd", "\t=x", "  =x"])
@@ -125,7 +125,7 @@ def test_gerar_csv_bom_delimitador_e_conteudo(conn, caminhos):
     texto = bruto.decode("utf-8-sig")
     primeira = texto.splitlines()[0]
     assert primeira.startswith("CNJ;Apelido;")
-    assert "Últ. verificação THEMIS" in primeira
+    assert "Últ. verificação MAAT" in primeira
     assert CNJ_B_FMT in texto
     assert "<script>alert(1)</script>" in texto  # CSV não é HTML: só neutraliza fórmulas
     movs = arq_mov.read_bytes().decode("utf-8-sig")
