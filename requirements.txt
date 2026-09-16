@@ -1,2 +1,3 @@
 requests>=2.31.0
-truststore>=0.9.0
+# Certificados do sistema (Windows/macOS); opcional, so existe para Python 3.10+
+truststore>=0.9.0; python_version >= "3.10"
